@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  fibo:
+    build: .
+    volumes:
+      - ./yet_another_directory:/usr/src/yet_another_directory/
+    ports:
+      - 8081:8081
+    environment:
+      - PORT=8081
+    depends_on:
+      - redis
+  redis:
+    image: redis:alpine
