@@ -21,7 +21,7 @@ def json_deserializer(key, value, flags):
    raise Exception("Unknown serialization format")
 
 
-cache = serialized_redis.JSONSerializedRedis(host='localhost', port=6379, db=0)
+cache = serialized_redis.JSONSerializedRedis(host='redis', port=6379, db=0)
 
 
 @app.route('/<int:n>')
@@ -42,4 +42,4 @@ def fibo(n):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=8000)
+    app.run(debug=True, host='0.0.0.0', port=8000)
