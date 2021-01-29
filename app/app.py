@@ -10,25 +10,17 @@ port = int(os.environ.get('PORT', 5000))
 cache = serialized_redis.JSONSerializedRedis(host='redis', port=6379)
 
 
-# @app.route('/<int:n>')
-# def fibo(n):
-#     cached = None
-#
-#     try:
-#         cached = cache.get(n)
-#     except:
-#         pass
-#
-#     if cached:
-#         return str(cached)
-#     else:
-#         f = fibo(n - 1) + fibo(n - 2)
-#         cache.set(n, f)
-#         return str(f)
 @app.route('/<int:n>')
 def fibo(n):
     a = 0
     b = 1
+    c = None
+
+    if n >= 0:
+        c = 1
+    else:
+        c = -1
+
     for __ in range(n):
         cached = None
 
@@ -40,7 +32,7 @@ def fibo(n):
         if cached:
             a, b = cache.get(__), a + b
         else:
-            a, b = b, a + b
+            a, b = b * c, a + b
             cache.set(__, a)
 
     return str(a)
