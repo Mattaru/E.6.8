@@ -14,12 +14,6 @@ cache = serialized_redis.JSONSerializedRedis(host='redis', port=6379)
 def fibo(n):
     a = 0
     b = 1
-    c = None
-
-    if n >= 0:
-        c = 1
-    else:
-        c = -1
 
     for __ in range(n):
         cached = None
@@ -32,10 +26,10 @@ def fibo(n):
         if cached:
             a, b = cache.get(__), a + b
         else:
-            a, b = b * c, a + b
+            a, b = b, a + b
             cache.set(__, a)
 
-    return str(a)
+    return str(f'{n}-e число последовательности Фибоначчи: \n{a}')
 
 
 if __name__ == '__main__':
