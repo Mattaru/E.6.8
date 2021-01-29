@@ -43,7 +43,7 @@ def fibo(n):
             a, b = b, a + b
             cache.set(__, a)
 
-    return a
+    return str(a)
 
 
 if __name__ == '__main__':
